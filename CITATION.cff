@@ -1,0 +1,46 @@
+# Citation metadata for GPDI Analyzer.
+# Zenodo reads this file when it archives a GitHub release and uses it to
+# build the deposit record, so keep it in sync with every tagged release.
+#
+# TODO: confirm the author list, add affiliation and ORCID.
+#
+# No DOI is listed. The software is cited by its repository and release
+# (version 1.0.0); add a `identifiers` block only once a deposit has actually
+# been made for THIS version.
+
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "GPDI Analyzer"
+abstract: >-
+  GPDI Analyzer computes the Graded Poetry Difficulty Index (GPDI) for
+  classical Chinese poetry. A poem is normalised to CJK characters, matched
+  against a graded character inventory, and scored on four components:
+  normalised average character difficulty (ACD*), high-difficulty character
+  ratio (HDCR), out-of-vocabulary ratio (OOVR) and normalised text length
+  (TL*). The tool also reports the character-level component on its own
+  scale, a per-character profile, and the position of the text within a
+  bundled reference corpus. It ships as a desktop application (PySide6) for
+  Windows and macOS. Definitions, weighting and band boundaries are given in
+  the associated study rather than in this metadata.
+authors:
+  - family-names: "Wang"
+    given-names: "Junbo"
+    # affiliation: "Nanjing Normal University"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: 1.0.0
+date-released: "2026-09-26"
+license: MIT
+repository-code: "https://github.com/fancy61333/GPDI-Analyzer"
+url: "https://github.com/fancy61333/GPDI-Analyzer"
+keywords:
+  - classical Chinese poetry
+  - readability
+  - text difficulty
+  - graded vocabulary
+  - Chinese as a second language
+  - international Chinese language education
+  - digital humanities
+# Note for users: the graded character inventory and the reference corpus are
+# not distributed with the software - see the README section "What is not
+# included, and why".
