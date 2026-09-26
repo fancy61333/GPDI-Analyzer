@@ -1,0 +1,70 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+
+# ---------- Virtual environments ----------
+.venv/
+venv/
+env/
+
+# ---------- PyInstaller build output ----------
+build/
+dist/
+dist_public/
+*.spec.bak
+
+# ---------- IDE / editor ----------
+.vscode/
+.idea/
+*.swp
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Local scratch ----------
+*.log
+~$*
+.gh/
+
+# ---------- Character inventory (NOT for public release) ----------
+# The ancient_3500 inventory is an internal research asset.
+# It ships embedded inside the compiled release - packed and compressed by
+# tools/pack_inventory.py into build_data/char_inventory.bin - but the raw
+# table is deliberately excluded from this repository. See README.md.
+data/char_inventory.csv
+
+# build staging directory (holds the packed inventory)
+build_data/
+
+# ---------- Output samples that print character grades ----------
+# docs/demo_output.txt is a real run of the tool: it prints the grade (A-E) of
+# twenty individual characters, which is inventory content, plus the full set
+# of metric values for that poem. Kept locally as a sample; not tracked.
+docs/demo_output.txt
+
+# ---------- Unpublished research results (embargoed until the paper is out) --
+# These files carry results that have not been published yet: per-poem metric
+# values, the frozen band assignment, the source of every reference text, and
+# the Section 4.6 robustness re-weighting. They stay on disk so the local
+# regression scripts keep working, but they are deliberately not tracked -
+# `git add -A` must never pick them up again, because this repository was
+# public once and may be published again after the embargo.
+# Removed from the index on 2026-09-26; see docs/takedown_request.md.
+data/corpus_frozen.csv
+data/poems_82_text.csv
+data/titles_82.tsv
+docs/corpus_provenance.md
+docs/regression_82.txt
+docs/robustness.md
+docs/robustness_82.csv
+docs/robustness_82.txt
+
+# ---------- Manuscript cross-check ----------
+# docs/paper_alignment_check.md quotes the manuscript's own Table 5 statistics
+# and Table 6 rho values, which are unpublished. Local working note only.
+docs/paper_alignment_check.md

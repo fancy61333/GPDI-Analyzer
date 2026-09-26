@@ -1,0 +1,11 @@
+# Shell scripts must keep LF endings (CRLF breaks `#!/usr/bin/env bash` on macOS)
+*.sh text eol=lf
+*.bat text eol=crlf
+*.py text eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.tsv text eol=lf
+# CFF is read by Zenodo's YAML parser; keep it LF-only
+*.cff text eol=lf
+.gitattributes text eol=lf
