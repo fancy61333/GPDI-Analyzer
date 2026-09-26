@@ -2,7 +2,13 @@
 # Zenodo reads this file when it archives a GitHub release and uses it to
 # build the deposit record, so keep it in sync with every tagged release.
 #
-# TODO: confirm the author list, add affiliation and ORCID.
+# The author block is deliberately a neutral placeholder, not a personal name.
+# Zenodo reads this file when it builds a deposit and prints the author on the
+# record, so a real name here would identify the authors while the manuscript
+# is in masked review. Replace it with the authors, affiliations and ORCIDs
+# only once the paper is accepted - in the same commit that adds the
+# repository link to the availability statement. Do not archive a release
+# while this placeholder is still in place.
 #
 # No DOI is listed. The software is cited by its repository and release
 # (version 1.0.0); add a `identifiers` block only once a deposit has actually
@@ -24,10 +30,12 @@ abstract: >-
   Windows and macOS. Definitions, weighting and band boundaries are given in
   the associated study rather than in this metadata.
 authors:
-  - family-names: "Wang"
-    given-names: "Junbo"
-    # affiliation: "Nanjing Normal University"
-    # orcid: "https://orcid.org/0000-0000-0000-0000"
+  - name: "GPDI Analyzer development team"
+    # At acceptance replace the whole block with one entry per author, e.g.
+    #   - family-names: "[…]"
+    #     given-names: "[…]"
+    #     affiliation: "[…]"
+    #     orcid: "https://orcid.org/[…]"
 version: 1.0.0
 date-released: "2026-09-26"
 license: MIT
