@@ -50,11 +50,10 @@ docs/demo_output.txt
 # ---------- Unpublished research results (embargoed until the paper is out) --
 # These files carry results that have not been published yet: per-poem metric
 # values, the frozen band assignment, the source of every reference text, and
-# the Section 4.6 robustness re-weighting. They stay on disk so the local
-# regression scripts keep working, but they are deliberately not tracked -
-# `git add -A` must never pick them up again, because this repository was
-# public once and may be published again after the embargo.
-# Removed from the index on 2026-09-26; see docs/takedown_request.md.
+# the robustness re-weighting. They stay on disk so the local regression
+# scripts keep working, but they are deliberately not tracked - `git add -A`
+# must never pick them up again.
+# Removed from the index on 2026-09-26.
 data/corpus_frozen.csv
 data/poems_82_text.csv
 data/titles_82.tsv
