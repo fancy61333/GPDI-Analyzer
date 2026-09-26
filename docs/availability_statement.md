@@ -73,13 +73,22 @@ does not carry the data.
 
 ---
 
-## 4. Two things to check before submitting
+## 4. Three things to check before submitting
 
-- **Look up the journal's own heading names.** *System* may require
+- **Look up the journal's own heading names.** Different journals label these
+  sections differently — "Software availability" and "Data availability" as two
+  labelled sections, or a single "Availability of data and materials". The
+  wording above is split so it can be dropped into either shape.
   "Software availability" and "Data availability" as separate, labelled
   sections; the wording above is split so it can be dropped into either.
-- **Decide whether the repository link is acceptable during review.** A public
-  repository is not anonymous. If the journal runs a double-blind review and
-  that matters here, the software section should read "available from the
-  authors on reasonable request" until the paper is accepted, and the link
-  should be added at proof stage.
+- **Decide whether the repository link is acceptable during review.** The
+  repository is public at https://github.com/fancy61333/GPDI-Analyzer and is
+  owned by the account `fancy61333`. A public repository is not anonymous. If
+  the target journal runs a masked review, the software section should read
+  "available from the authors on reasonable request" until the paper is
+  accepted, and the link should be added at proof stage.
+- **Check `CITATION.cff` before archiving anything.** Its author block still
+  carries a placeholder name. Archiving a release while that placeholder is in
+  place would print the wrong author on the public deposit, and once a deposit
+  exists it also identifies the authors — the same anonymity question as the
+  link above.
