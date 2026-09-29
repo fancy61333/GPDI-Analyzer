@@ -17,8 +17,8 @@ FROZEN_CSV = os.path.join(BASE, 'data', 'corpus_frozen.csv')
 REPORT = os.path.join(BASE, 'docs', 'regression_82.txt')
 
 TOL = {'N': 0.5, 'ACD_star': 0.002, 'HDCR': 0.002, 'OOVR': 0.002,
-       'TL_star': 0.002, 'GPDI': 0.05, 'GPDI_char': 0.05, 'GPRS': 0.05}
-METRICS = ['N', 'ACD_star', 'HDCR', 'OOVR', 'TL_star', 'GPDI_char', 'GPDI', 'GPRS']
+       'TL_star': 0.002, 'GPDI': 0.05, 'GPDI_char': 0.05}
+METRICS = ['N', 'ACD_star', 'HDCR', 'OOVR', 'TL_star', 'GPDI_char', 'GPDI']
 
 inv = gpdi.load_inventory()
 

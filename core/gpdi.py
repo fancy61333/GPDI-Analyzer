@@ -3,8 +3,11 @@
 GPDI Analyzer — scoring core (spec 1.0.2)
 
 GPDI = Graded Poetry Difficulty Index
-GPRS = 100 - GPDI   (readability score; reported next to GPDI in the
-                     manuscript's grading table)
+
+Only the measures the manuscript reports are exposed: GPDI, its four components
+(ACD*, HDCR, OOVR, TL*), N, GPDI_char and the corpus-relative band. An earlier
+build also carried an inverse display score (100 - GPDI); it was dropped
+because the manuscript does not report it.
 
 Scoring specification frozen from the FLA manuscript corpus
 (01_GPDI_final_poetry_corpus.xlsx, 100 texts / 82 deduplicated poems).
@@ -219,7 +222,7 @@ def normalize(text, inventory=None, variant_map=None):
 def analyze(text, inventory=None, reference_bands=None):
     """Score one poem.
 
-    Returns a dict with N, ACD, ACD*, HDCR, OOVR, TL*, GPDI_char, GPDI, GPRS,
+    Returns a dict with N, ACD, ACD*, HDCR, OOVR, TL*, GPDI_char, GPDI,
     the A-E / OOV character profile, and (if reference_bands given) the
     corpus-relative band.
     """
@@ -262,7 +265,6 @@ def analyze(text, inventory=None, reference_bands=None):
     gpdi = 100.0 * (char_share + W_LEN * tl_star)
     gpdi_char = 100.0 * (W_CHAR_ACD * acd_star + W_CHAR_HDCR * hdcr
                          + W_CHAR_OOVR * oovr)
-    gprs = 100.0 - gpdi
 
     result = {
         'N': n,
@@ -273,7 +275,6 @@ def analyze(text, inventory=None, reference_bands=None):
         'TL_star': round(tl_star, 4),
         'GPDI_char': round(gpdi_char, 2),
         'GPDI': round(gpdi, 2),
-        'GPRS': round(gprs, 2),
         'char_distribution': {LEVEL_LABEL[k]: v for k, v in dist.items() if v},
         'profile': profile,
         'text_normalized': clean,
@@ -371,7 +372,6 @@ if __name__ == '__main__':
     print(f"TL*    (长度)   : {r['TL_star']}")
     print(f"GPDI_char       : {r['GPDI_char']}")
     print(f"GPDI            : {r['GPDI']}")
-    print(f"GPRS            : {r['GPRS']}")
     print(f"Corpus band     : Band {r.get('corpus_band')}")
     print("字级分布:", r['char_distribution'])
     print("-" * 60)

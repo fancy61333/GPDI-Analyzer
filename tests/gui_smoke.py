@@ -55,7 +55,6 @@ def main():
 
     print('  N            =', win.v_n.text())
     print('  GPDI_char    =', win.v_gpdi_char.text())
-    print('  GPRS         =', win.v_gprs.text())
     print('  band         =', win.v_band.text())
     print('  distribution =', win.v_dist.text())
     print('  table rows   =', win.table.rowCount())

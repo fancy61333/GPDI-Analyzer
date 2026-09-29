@@ -44,7 +44,7 @@ LEVEL_COLOR = {
 }
 
 EXPORT_COLUMNS = ['title', 'N', 'ACD', 'ACD_star', 'HDCR', 'OOVR',
-                  'TL_star', 'GPDI_char', 'GPDI', 'GPRS', 'corpus_band']
+                  'TL_star', 'GPDI_char', 'GPDI', 'corpus_band']
 
 
 class MainWindow(QWidget):
@@ -115,7 +115,6 @@ class MainWindow(QWidget):
         box = QGroupBox('Metrics')
         g = QGridLayout(box)
         self.v_gpdi = self._big_label(g, 0, 0, 'GPDI')
-        self.v_gprs = self._small_label(g, 0, 1, 'GPRS')
         self.v_acd = self._small_label(g, 1, 0, 'ACD*')
         self.v_hdcr = self._small_label(g, 1, 1, 'HDCR')
         self.v_oovr = self._small_label(g, 1, 2, 'OOVR')
@@ -185,26 +184,34 @@ class MainWindow(QWidget):
         self.inventory_path = path
         self._refresh_inventory_status()
 
-    def _big_label(self, grid, r, c, name):
-        grid.addWidget(QLabel(name), r, c)
-        lab = QLabel('—')
-        lab.setFont(QFont('Segoe UI', 20, QFont.Bold))
-        lab.setStyleSheet('color:#2C3E50;')
-        grid.addWidget(lab, r, c, alignment=Qt.AlignLeft)
-        return lab
+    def _caption(self, text):
+        n = QLabel(text)
+        n.setStyleSheet('color:#888; font-size:10px;')
+        return n
 
-    def _small_label(self, grid, r, c, name):
+    def _cell(self, grid, r, c, name, size):
+        # Caption and value must live in a vertical layout. Adding them as two
+        # separate widgets to the same grid cell stacked them on top of each
+        # other, which made the 20pt GPDI value print straight over "GPDI".
         w = QWidget()
         v = QVBoxLayout(w)
         v.setContentsMargins(0, 0, 0, 0)
         v.setSpacing(0)
-        n = QLabel(name)
-        n.setStyleSheet('color:#888; font-size:10px;')
         val = QLabel('—')
-        val.setFont(QFont('Segoe UI', 12, QFont.Bold))
-        v.addWidget(n)
+        val.setFont(QFont('Segoe UI', size, QFont.Bold))
+        v.addWidget(self._caption(name))
         v.addWidget(val)
-        grid.addWidget(w, r, c)
+        v.addStretch(1)
+        grid.addWidget(w, r, c, alignment=Qt.AlignLeft | Qt.AlignTop)
+        return val
+
+    def _big_label(self, grid, r, c, name):
+        val = self._cell(grid, r, c, name, 20)
+        val.setStyleSheet('color:#2C3E50;')
+        return val
+
+    def _small_label(self, grid, r, c, name):
+        return self._cell(grid, r, c, name, 12)
         return val
 
     # ------------------------------------------------------------ actions
@@ -270,7 +277,6 @@ class MainWindow(QWidget):
 
     def _show_single(self, res):
         self.v_gpdi.setText('%.2f' % res['GPDI'])
-        self.v_gprs.setText('%.2f' % res['GPRS'])
         self.v_acd.setText('%.3f' % res['ACD_star'])
         self.v_hdcr.setText('%.2f%%' % (res['HDCR'] * 100))
         self.v_oovr.setText('%.2f%%' % (res['OOVR'] * 100))
@@ -296,7 +302,7 @@ class MainWindow(QWidget):
             'title': title, 'N': res['N'], 'ACD': res['ACD'],
             'ACD_star': res['ACD_star'], 'HDCR': res['HDCR'], 'OOVR': res['OOVR'],
             'TL_star': res['TL_star'], 'GPDI_char': res['GPDI_char'],
-            'GPDI': res['GPDI'], 'GPRS': res['GPRS'],
+            'GPDI': res['GPDI'],
             'corpus_band': res.get('corpus_band') or '',
         })
         r = self.table.rowCount()
@@ -325,7 +331,7 @@ class MainWindow(QWidget):
         self.profile.clear()
         self.table.setRowCount(0)
         self.rows = []
-        for lab in (self.v_gpdi, self.v_gprs, self.v_acd, self.v_hdcr, self.v_oovr,
+        for lab in (self.v_gpdi, self.v_acd, self.v_hdcr, self.v_oovr,
                     self.v_tl, self.v_n, self.v_gpdi_char, self.v_band, self.v_dist):
             lab.setText('—')
 
@@ -360,7 +366,7 @@ def selftest():
         f.write('inventory_chars=%d\n' % len(inv))
         f.write('bands=%s\n' % (bands['cuts'] if bands else None))
         for k in ('N', 'ACD_star', 'HDCR', 'OOVR', 'TL_star',
-                  'GPDI_char', 'GPDI', 'GPRS'):
+                  'GPDI_char', 'GPDI'):
             f.write('%s=%s\n' % (k, r[k]))
         f.write('corpus_band=%s\n' % r.get('corpus_band'))
     return path

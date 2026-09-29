@@ -55,9 +55,9 @@ What this means in practice:
   `char,level_value` columns, or the packed `.bin` form written by
   `tools/pack_inventory.py`.
 - **The corpus-relative band is unavailable** in the distributed build, because
-  it is read from the reference corpus. Every other measure — GPDI, GPRS,
-  ACD\*, HDCR, OOVR, TL\*, GPDI_char and the per-character profile — works as
-  soon as an inventory is loaded.
+  it is read from the reference corpus. Every other measure — GPDI, ACD\*,
+  HDCR, OOVR, TL\*, GPDI_char and the per-character profile — works as soon as
+  an inventory is loaded.
 - **The packaged archive is audited.** `tools/audit_leak.py --public` fails the
   build if a release archive ever carries the inventory or the reference
   corpus again.
@@ -88,7 +88,7 @@ Features:
 
 - **Single text** — paste a poem, press *Analyze*
 - **Batch input** — load `.txt` (one poem per file) or `.csv` (`title`, `text` columns)
-- **Metrics panel** — GPDI, GPRS, ACD\*, HDCR, OOVR, TL\*, N, GPDI_char, corpus band
+- **Metrics panel** — GPDI, ACD\*, HDCR, OOVR, TL\*, N, GPDI_char, corpus band
 - **Character profile** — every character tagged and colour-coded
 - **CSV export** — UTF-8 with BOM, opens cleanly in Excel
 - **Disclaimer** — the scope statement is fixed at the bottom of the interface
